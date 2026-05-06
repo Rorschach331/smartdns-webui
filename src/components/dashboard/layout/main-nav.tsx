@@ -44,7 +44,7 @@ export function MainNav({ pageTitle }: MainNavProps): React.JSX.Element {
               <MenuOutlined />
             </IconButton>
             <Stack>
-              <Typography variant="h5">{pageTitle} (DEBUG: Custom UI V2)</Typography>
+              <Typography variant="h5">{pageTitle}</Typography>
             </Stack>
           </Stack>
           <MainToolBar />

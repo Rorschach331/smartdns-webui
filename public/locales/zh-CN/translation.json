@@ -145,5 +145,8 @@
     "Server Version": "服务器版本",
     "Hostname": "主机名",
     "Edit": "编辑",
-    "Update client {{hostname}} successfully.": "更新客户端 {{hostname}} 成功。"
+    "Update client {{hostname}} successfully.": "更新客户端 {{hostname}} 成功。",
+    "Actions": "操作",
+    "Save": "保存",
+    "Cancel": "取消"
 }

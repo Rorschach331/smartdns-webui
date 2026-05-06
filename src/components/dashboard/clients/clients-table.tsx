@@ -430,6 +430,12 @@ function TableClients(): React.JSX.Element {
     enableEditing: true,
     editDisplayMode: 'row',
     onEditingRowSave: handleSaveClient,
+    displayColumnDefOptions: {
+      'mrt-row-actions': {
+        header: t('Actions'),
+        size: 120,
+      },
+    },
     icons: {
       SaveIcon: (props: Record<string, unknown>) => <SaveIcon {...props} color="primary" />,
       CancelIcon: (props: Record<string, unknown>) => <CancelIcon {...props} color="error" />,
