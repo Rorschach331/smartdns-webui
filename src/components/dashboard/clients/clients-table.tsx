@@ -16,7 +16,7 @@ import {
   type MRT_TableInstance as MRTTableInstance,
   type MRT_TableOptions,
 } from 'material-react-table';
-import { Card, IconButton, Tooltip, Stack } from '@mui/material';
+import { Card, IconButton, Tooltip } from '@mui/material';
 import { createTheme, useColorScheme } from '@mui/material/styles';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import SaveIcon from '@mui/icons-material/Check';
@@ -431,8 +431,8 @@ function TableClients(): React.JSX.Element {
     editDisplayMode: 'row',
     onEditingRowSave: handleSaveClient,
     icons: {
-      SaveIcon: (props: any) => <SaveIcon {...props} color="primary" />,
-      CancelIcon: (props: any) => <CancelIcon {...props} color="error" />,
+      SaveIcon: (props: Record<string, unknown>) => <SaveIcon {...props} color="primary" />,
+      CancelIcon: (props: Record<string, unknown>) => <CancelIcon {...props} color="error" />,
     },
     enableCellActions: true,
     enableClickToCopy: false,
