@@ -16,9 +16,11 @@ import {
   type MRT_TableInstance as MRTTableInstance,
   type MRT_TableOptions,
 } from 'material-react-table';
-import { Card, IconButton, Tooltip } from '@mui/material';
+import { Card, IconButton, Tooltip, Stack } from '@mui/material';
 import { createTheme, useColorScheme } from '@mui/material/styles';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import SaveIcon from '@mui/icons-material/Check';
+import CancelIcon from '@mui/icons-material/Close';
 import dayjs from 'dayjs';
 import {
   QueryClient,
@@ -104,6 +106,7 @@ function TableClients(): React.JSX.Element {
         size: 80,
         enableColumnActions: false,
         columnFilterModeOptions: ['equals'],
+        enableEditing: false,
       },
       {
         accessorKey: 'client_ip',
@@ -112,6 +115,7 @@ function TableClients(): React.JSX.Element {
         enableColumnActions: false,
         columnFilterModeOptions: ['contains', 'equals'],
         enableSorting: false,
+        enableEditing: false,
       },
       {
         accessorKey: 'mac',
@@ -120,6 +124,7 @@ function TableClients(): React.JSX.Element {
         enableColumnActions: false,
         columnFilterModeOptions: ['equals'],
         enableSorting: false,
+        enableEditing: false,
       },
       {
         accessorKey: 'hostname',
@@ -128,6 +133,7 @@ function TableClients(): React.JSX.Element {
         enableColumnActions: false,
         columnFilterModeOptions: ['equals'],
         enableSorting: false,
+        enableEditing: true, // 显式允许编辑
       },
       {
         accessorKey: 'last_query_timestamp',
@@ -140,6 +146,7 @@ function TableClients(): React.JSX.Element {
         filterVariant: 'datetime-range',
         enableColumnFilterModes: false,
         enableColumnActions: false,
+        enableEditing: false,
         size: 160,
       },
     ],
@@ -423,6 +430,10 @@ function TableClients(): React.JSX.Element {
     enableEditing: true,
     editDisplayMode: 'row',
     onEditingRowSave: handleSaveClient,
+    icons: {
+      SaveIcon: (props: any) => <SaveIcon {...props} color="primary" />,
+      CancelIcon: (props: any) => <CancelIcon {...props} color="error" />,
+    },
     enableCellActions: true,
     enableClickToCopy: false,
     enableGlobalFilter: false,
