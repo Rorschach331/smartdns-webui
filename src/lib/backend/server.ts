@@ -337,6 +337,10 @@ class SmartDNSAPI {
         return this.server.fetch<null>(`/api/client/${id}`, 'DELETE', {}, {});
     }
 
+    async UpdateClientHostname(mac: string, hostname: string): Promise<{ error?: ServerError }> {
+        return this.server.fetch<null>('/api/client/hostname', 'POST', {}, { mac, hostname });
+    }
+
     async DeleteQueryLogById(id: number): Promise<{ error?: ServerError }> {
         return this.server.fetch<null>(`/api/domain/${id}`, 'DELETE', {}, {});
     }

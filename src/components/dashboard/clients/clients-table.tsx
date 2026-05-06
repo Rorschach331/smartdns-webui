@@ -14,6 +14,7 @@ import {
   type MRT_Row as MRTRow,
   type MRT_Cell as MRTCell,
   type MRT_TableInstance as MRTTableInstance,
+  type MRT_TableOptions,
 } from 'material-react-table';
 import { Card, IconButton, Tooltip } from '@mui/material';
 import { createTheme, useColorScheme } from '@mui/material/styles';
@@ -380,6 +381,24 @@ function TableClients(): React.JSX.Element {
     ]
   );
 
+  const handleSaveClient: MRT_TableOptions<ClientList>['onEditingRowSave'] = async ({
+    values,
+    table,
+  }) => {
+    const mac = values.mac;
+    const hostname = values.hostname;
+
+    const ret = await smartdnsServer.UpdateClientHostname(mac, hostname);
+    if (ret.error) {
+      enqueueSnackbar(`${t('Error')}: ${t(smartdnsServer.getErrorMessage(ret.error))}`, { variant: 'error' });
+      return;
+    }
+
+    enqueueSnackbar(t('Update client {{hostname}} successfully.', { hostname }), { variant: 'success' });
+    table.setEditingRow(null);
+    await refetch();
+  };
+
   const renderCellMenuItem = (closeMenu: () => void, _cell: MRTCell<ClientList>, row: MRTRow<ClientList>, table: MRTTableInstance<ClientList>): React.ReactNode[] => (
     [
       renderRowMenuItem(closeMenu, row, table),
@@ -401,6 +420,9 @@ function TableClients(): React.JSX.Element {
     enableSorting: true,
     enableColumnOrdering: true,
     enableRowActions: true,
+    enableEditing: true,
+    editDisplayMode: 'row',
+    onEditingRowSave: handleSaveClient,
     enableCellActions: true,
     enableClickToCopy: false,
     enableGlobalFilter: false,

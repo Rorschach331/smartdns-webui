@@ -169,6 +169,26 @@ function TableQueryLogs(): React.JSX.Element {
         },
       },
       {
+        accessorKey: 'client_hostname',
+        header: t('Hostname'),
+        size: 150,
+        enableColumnActions: false,
+        columnFilterModeOptions: ['contains', 'equals'],
+        muiTableBodyCellProps: {
+          sx: {
+            maxWidth: '150px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          },
+        },
+        Cell: ({ cell, renderedCellValue }) => (
+          <Tooltip title={cell.getValue<string>()} arrow placement="top">
+            <span>{renderedCellValue}</span>
+          </Tooltip>
+        ),
+      },
+      {
         accessorKey: 'timestamp',
         header: t('Time'),
         Cell: ({ cell }) => {
